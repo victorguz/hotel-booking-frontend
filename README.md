@@ -1,27 +1,71 @@
-# HotelBookingFrontend
+Nombre Administracion de alojamiento hoteles locales
+Descripción Yo como agencia de viajes deseo crear un hotel en mi lista
+de hoteles preferidos, con el fin obtener una comisión más
+alta.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+Criterios de aceptación Dado que yo como agente de viajes inicie sesión en mi
+plataforma de viajes y desee gestionar un hotel, entonces:
+● El sistema deberá permitir crear un nuevo hotel
+● El sistema deberá permitir asignar al hotel cada una
+de las habitaciones disponibles para reserva
+● El sistema deberá permitir modificar los valores de de
+cada habitación
+● El sistema deberá permitir modificar los datos de cada
+hotel
+● El sistema me deberá permitir habilitar o deshabilitar
+cada uno de los hoteles
+● El sistema me deberá permitir habilitar o deshabilitar
+cada una de las habitaciones del hotel
+Dado que yo como agente de viajes inicie sesión en mi
+plataforma de viajes y desee ver las reservas de hoteles,
+entonces
+● El sistema deberá listar cada una de las reservas
+realizadas en mis hoteles
+● El sistema deberá permitir ver el detalle de cada una
+de las reservas realizadas
 
-## Development server
+Observaciones ● Cada habitación deberá permitir registrar el costo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+base, impuestos y tipo de habitación.
 
-## Code scaffolding
+● Cada habitación deberá permitir registrar la ubicación
+en que se encuentra
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Nombre Reserva de hoteles
+Descripción Yo como viajero deseo reservar un hotel en la plataforma
+de viajes de mi preferencia, con el fin de obtener un
+alojamiento
 
-## Build
+Criterios de aceptación Dado que yo como viajero esté en el buscador de hoteles,
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+entonces:
+● El sistema me deberá dar la opción de buscar por:
+fecha de entrada al alojamiento, fecha de salida del
+alojamiento, cantidad de personas que se alojarán y
+ciudad de destino.
+Dado que yo como viajero entre al sitio de viajes y realice
+una búsqueda de hoteles, entonces:
+● El sistema me deberá permitir elegir una habitación del
+hotel de mi preferencia
+Dado que yo como viajero seleccione mi habitación de
+preferencia, entonces:
+● El sistema me deberá desplegar un formulario de
+reserva para ingresar los datos de los huéspedes
+● El sistema deberá permitir realizar la reserva de la
+habitación.
+● El sistema me deberá notificar la reserva por medio de
+correo electrónico.
 
-## Running unit tests
+Observaciones Los datos de cada pasajero deben ser:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+● Nombres y apellidos
+● Fecha de nacimiento
+● Género
+● Tipo de documento
+● Número de documento
+● Email
+● Teléfono de contacto
+La reserva deberá asociar un contacto de emergencia, el
+cual debe contener:
+● Nombres completos
+● Teléfono de contacto
