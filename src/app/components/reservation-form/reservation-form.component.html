@@ -1,0 +1,236 @@
+<article class="row g-3" *ngIf="reservation">
+  <section class="col-lg-6 col-12">
+    <mat-card>
+      <mat-card-content>
+        <h2>Reservación en {{ reservation.hotel?.name }}</h2>
+        <p>
+          <strong>Habitación:</strong> {{ reservation.room?.name }} -
+          {{ reservation.room?.type }}
+          <br />
+          <strong>Fecha de ingreso:</strong>
+          {{ reservation.checkInDate | date }} a
+          <br />
+          <strong>Fecha de salida:</strong>
+          {{ reservation.checkOutDate | date }}
+        </p>
+
+        <p>
+          <strong>Huésped principal:</strong>
+          <span
+            [ngClass]="{
+              'text-danger': !reservation.principalGuest?.firstName
+            }"
+          >
+            {{
+              reservation.principalGuest?.firstName &&
+              reservation.principalGuest?.lastName
+                ? reservation.principalGuest?.firstName +
+                  " " +
+                  reservation.principalGuest?.lastName
+                : "Diligencie los datos de huespedes"
+            }}
+          </span>
+        </p>
+        <p>
+          <strong>Contacto de emergencia:</strong>
+          <span
+            [ngClass]="{ 'text-danger': !reservation.emergencyContact?.name }"
+          >
+            {{
+              reservation.emergencyContact?.name
+                ? (reservation.emergencyContact?.name | titlecase) +
+                  " " +
+                  reservation.emergencyContact?.phone
+                : "Diligencie los datos de contacto de emergencia"
+            }}
+          </span>
+        </p>
+        <p><strong>Fecha de entrada:</strong> {{ reservation.checkInDate }}</p>
+        <p><strong>Fecha de salida:</strong> {{ reservation.checkOutDate }}</p>
+        <p>
+          <strong>Precio total:</strong> {{ reservation.totalPrice | currency }}
+        </p>
+        <p><strong>Estado:</strong> {{ reservation.status }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mt-3">
+      <mat-card-content>
+        <h2>Huespedes</h2>
+        <mat-table
+          [dataSource]="reservation.guestDetails ?? []"
+          class="mat-elevation-z8"
+        >
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+              <div class="p-4 text-danger">
+                Diligencie los datos de huespedes
+              </div>
+            </td>
+          </tr>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let guest">
+              {{ guest.firstName + " " + guest.lastName | titlecase }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="principal">
+            <mat-header-cell *matHeaderCellDef> Principal </mat-header-cell>
+            <mat-cell *matCellDef="let guest">
+              {{ guest.id == reservation.principalGuest?.id ? "Sí" : "No" }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section class="col-lg-6 col-12">
+    <mat-card
+      *ngIf="
+        reservation.guestDetails?.length! < reservation.room?.maxOccupancy! - 1
+      "
+    >
+      <mat-card-header>
+        <mat-card-title>Registro de Huésped</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              name="firstName"
+              label="Nombre"
+              placeholder="Nombre"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              name="lastName"
+              label="Apellido"
+              placeholder="Apellido"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              type="date"
+              name="birthDate"
+              label="Fecha de Nacimiento"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              name="gender"
+              label="Género"
+              placeholder="Género"
+              type="select"
+              [items]="[
+                { value: 'male', name: 'Masculino' },
+                { value: 'female', name: 'Femenino' }
+              ]"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              name="documentType"
+              label="Tipo de Documento"
+              placeholder="Tipo de Documento"
+              type="select"
+              [items]="[
+                { value: 'cc', name: 'Cédula de ciudadanía' },
+                { value: 'ti', name: 'Tarjeta de identidad' },
+                { value: 'pp', name: 'Pasaporte' }
+              ]"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              type="number"
+              name="documentNumber"
+              label="Número de Documento"
+              placeholder="Número de Documento"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              type="email"
+              name="email"
+              label="Email"
+              placeholder="Email"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <field-form
+              [form]="guestForm"
+              type="number"
+              name="phone"
+              label="Teléfono"
+              placeholder="Teléfono"
+            ></field-form>
+          </div>
+          <div class="col-lg-6 col-12">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="guestForm.invalid"
+              (click)="onSaveGuest()"
+            >
+              Registrar huesped
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mt-3">
+      <mat-card-header>
+        <mat-card-title>Registro de Contacto de Emergencia</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <field-form
+          [form]="emergencyContactForm"
+          name="name"
+          label="Nombre"
+          placeholder="Nombre"
+        ></field-form>
+        <field-form
+          [form]="emergencyContactForm"
+          name="phone"
+          label="Teléfono"
+          placeholder="Teléfono"
+        ></field-form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="emergencyContactForm.invalid"
+          (click)="updateEmergencyContact()"
+        >
+          Registrar contacto
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+  <div class="col-12">
+    <button
+      class="btn btn-primary rounded-5 w-100 text-center d-flex justify-content-center align-items-center"
+      [disabled]="!canChangeStatus"
+      (click)="(updateStatus)"
+    >
+      Enviar reserva
+    </button>
+  </div>
+</article>

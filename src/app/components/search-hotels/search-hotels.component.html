@@ -1,0 +1,91 @@
+<article>
+  <section>
+    <h2>Buscar Hoteles</h2>
+    <mat-card>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-6">
+            <field-form
+              [form]="form"
+              type="text"
+              name="city"
+              placeholder="Ciudad"
+              label="Ciudad"
+            ></field-form>
+          </div>
+          <div class="col-6">
+            <field-form
+              [form]="form"
+              type="number"
+              name="guests"
+              placeholder="Número de huéspedes"
+              label="Número de huéspedes"
+            ></field-form>
+          </div>
+          <div class="col-6">
+            <field-form
+              [form]="form"
+              type="date"
+              name="checkInDate"
+              placeholder="Fecha de entrada"
+              label="Fecha de entrada"
+            ></field-form>
+          </div>
+          <div class="col-6">
+            <field-form
+              [form]="form"
+              type="date"
+              name="checkOutDate"
+              placeholder="Fecha de salida"
+              label="Fecha de salida"
+            ></field-form>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="form.invalid"
+          (click)="searchHotels()"
+        >
+          Buscar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+
+  @if(rooms.length){
+  <section class="mt-3">
+    <h1>Habitaciones</h1>
+
+    <br />
+    <div class="row g-3">
+      <div class="col-12" *ngFor="let item of hotels">
+        <mat-card class="hover" (click)="openModalRooms(item!)">
+          <mat-card-content>
+            <div class="row">
+              <div class="col-6">
+                <img
+                  src="https://www.kayak.com.co/news/wp-content/uploads/sites/180/2023/08/THEME_HOTEL_SIGN_FIVE_STARS_FACADE_BUILDING_GettyImages-1320779330-3.jpg"
+                  alt="hotel"
+                  class="hotel-image rounded"
+                />
+              </div>
+              <div class="col-6">
+                <mat-card-title>{{ item.name }}</mat-card-title>
+                <p><strong>País:</strong> {{ item.country }}</p>
+                <p><strong>Ciudad:</strong> {{ item.city }}</p>
+                <p>
+                  <strong>Habilitado:</strong>
+                  {{ item.enabled ? "Sí" : "No" }}
+                </p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+  }
+</article>

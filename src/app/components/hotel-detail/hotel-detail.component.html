@@ -1,0 +1,62 @@
+<article class="d-flex flex-column gap-3 w-100">
+  <section class="top-actions"></section>
+
+  <div class="row g-3">
+    <section class="col-lg-6 col-12">
+      <h1>Actualizar hotel</h1>
+      <app-hotel-form
+        [hotel]="hotel"
+        (onSubmit)="onSubmit($event)"
+      ></app-hotel-form>
+
+      <mat-card class="mt-3">
+        <mat-card-content class="buttons flex-wrap">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="openRoomForm()"
+            [disabled]="!hotel.id"
+          >
+            Crear habitación
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <div class="col-lg-6 col-12">
+      <h1>Habitaciones</h1>
+
+      @if(rooms.length){
+      <br />
+      <section class="row g-3">
+        <div class="col-12" *ngFor="let item of rooms">
+          <mat-card class="hover" (click)="openRoomForm(item)">
+            <mat-card-content>
+              <div class="row">
+                <div class="col-6">
+                  <img
+                    src="https://www.conely.es/wp-content/uploads/2019/07/decoracion-habitacion-hotel.jpg"
+                    alt="hotel"
+                    class="hotel-image rounded"
+                  />
+                </div>
+                <div class="col-6">
+                  <mat-card-title>{{ item.name }}</mat-card-title>
+                  <p><strong>Precio:</strong> {{ item.basePrice }}</p>
+                  <p><strong>Impuestos:</strong> {{ item.tax }}</p>
+                  <p><strong>Lugar:</strong> {{ item.location }}</p>
+                  <p><strong>Lugar:</strong> {{ item.location }}</p>
+                  <p>
+                    <strong>Habilitado:</strong>
+                    {{ item.enabled ? "Sí" : "No" }}
+                  </p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+      }
+    </div>
+  </div>
+</article>

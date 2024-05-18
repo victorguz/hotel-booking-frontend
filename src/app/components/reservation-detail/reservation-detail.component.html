@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="reservation-image"></div>
+    <mat-card-title
+      >Reservación en {{ reservation.hotel?.name }}</mat-card-title
+    >
+    <mat-card-subtitle
+      >{{ reservation.room?.name }} - {{ reservation.checkInDate }} a
+      {{ reservation.checkOutDate }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Hotel:</strong> {{ reservation.hotel?.name }}</p>
+    <p>
+      <strong>Habitación:</strong> {{ reservation.room?.name }} ({{
+        reservation.room?.type
+      }})
+    </p>
+    <p>
+      <strong>Huésped principal:</strong>
+      {{
+        reservation.principalGuest?.firstName +
+          " " +
+          reservation.principalGuest?.lastName
+      }}
+    </p>
+    <p>
+      <strong>Contacto de emergencia:</strong>
+      {{ reservation.emergencyContact?.name }} ({{
+        reservation.emergencyContact?.phone
+      }})
+    </p>
+    <p><strong>Fecha de entrada:</strong> {{ reservation.checkInDate }}</p>
+    <p><strong>Fecha de salida:</strong> {{ reservation.checkOutDate }}</p>
+    <p>
+      <strong>Precio total:</strong> {{ reservation.totalPrice | currency }}
+    </p>
+    <p><strong>Estado:</strong> {{ reservation.status }}</p>
+
+    <mat-table
+      [dataSource]="reservation.guestDetails!"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let guest"> {{ guest.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="principal">
+        <mat-header-cell *matHeaderCellDef> Principal </mat-header-cell>
+        <mat-cell *matCellDef="let guest">
+          {{ guest.id === reservation.principalGuest?.id ? "Sí" : "No" }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Cancelar</button>
+  </mat-card-actions>
+</mat-card>

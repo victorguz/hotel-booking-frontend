@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          label="Nombre"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="select"
+          name="type"
+          placeholder="Tipo"
+          label="Tipo"
+          [items]="roomTypes"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="number"
+          name="basePrice"
+          placeholder="Precio base"
+          label="Precio Base"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="number"
+          name="tax"
+          placeholder="Impuesto"
+          label="Impuesto"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="location"
+          placeholder="Ubicación"
+          label="Ubicación"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="number"
+          name="maxOccupancy"
+          placeholder="Ocupación máxima"
+          label="Ocupación Máxima"
+        ></field-form>
+        <div class="col-12">
+          <field-form
+            [form]="form"
+            type="toggle"
+            name="enabled"
+            label="Habilitado"
+          ></field-form>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-12 pt-5">
+        <div class="flex-center">
+          <button mat-button (click)="onCancel()">Cancelar</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onOk()"
+            [disabled]="form.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

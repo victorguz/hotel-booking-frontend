@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { SharedModule } from '../../modules/shared/shared.module';
 
 @Component({
   selector: 'app-administrator',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [SharedModule],
   templateUrl: './administrator.component.html',
-  styleUrl: './administrator.component.scss'
+  styleUrl: './administrator.component.scss',
 })
-export class AdministratorComponent {
-
-}
+export class AdministratorComponent {}

@@ -1,0 +1,32 @@
+<article class="p-3">
+  <h2>Habitaciones disponibles</h2>
+  <p>Seleccione la de su preferencia</p>
+  <div class="row g-3">
+    <div class="col-12" *ngFor="let item of data.rooms">
+      <mat-card class="hover" (click)="createReservationForm(item)">
+        <mat-card-content>
+          <div class="row">
+            <div class="col-6">
+              <img
+                src="https://www.conely.es/wp-content/uploads/2019/07/decoracion-habitacion-hotel.jpg"
+                alt="hotel"
+                class="hotel-image rounded"
+              />
+            </div>
+            <div class="col-6">
+              <mat-card-title>{{ item.name }}</mat-card-title>
+              <p><strong>Precio:</strong> {{ item.basePrice }}</p>
+              <p><strong>Impuestos:</strong> {{ item.tax }}</p>
+              <p><strong>Lugar:</strong> {{ item.location }}</p>
+              <p><strong>Lugar:</strong> {{ item.location }}</p>
+              <p>
+                <strong>Habilitado:</strong>
+                {{ item.enabled ? "Sí" : "No" }}
+              </p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</article>

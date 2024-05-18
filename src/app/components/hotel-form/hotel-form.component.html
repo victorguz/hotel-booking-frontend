@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          label="Nombre"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="city"
+          placeholder="Ciudad"
+          label="Ciudad"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="country"
+          placeholder="País"
+          label="País"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="text"
+          name="phone"
+          placeholder="Teléfono"
+          label="Teléfono"
+        ></field-form>
+      </div>
+      <div class="col-12">
+        <field-form
+          [form]="form"
+          type="email"
+          name="email"
+          placeholder="Email"
+          label="Email"
+        ></field-form>
+      </div>
+      <div class="col-lg-6 col-12">
+        <field-form
+          [form]="form"
+          type="toggle"
+          name="enabled"
+          label="Habilitado"
+        ></field-form>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="d-flex justify-content-end align-items-end">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="sumbit()"
+            [disabled]="form.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

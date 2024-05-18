@@ -9,16 +9,14 @@ import { SharedModule } from '../../modules/shared/shared.module';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  title = 'Jiraya Hotel';
-
   routes = [
     {
       title: 'Administrador',
-      link: '/administrator',
+      link: '/hotels',
     },
     {
-      title: 'Visitor',
-      link: '/visitor',
+      title: 'Huesped',
+      link: '/search-hotels',
     },
   ];
 }

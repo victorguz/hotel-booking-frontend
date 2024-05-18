@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../modules/shared/shared.module';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [SharedModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  title = 'Jiraya Hotel';
+  title = 'BookingHotels.com';
 
   routes = [
     {
@@ -18,11 +15,11 @@ export class NavbarComponent {
     },
     {
       title: 'Administrador',
-      link: '/administrator',
+      link: '/hotels',
     },
     {
-      title: 'Visitor',
-      link: '/visitor',
+      title: 'Huesped',
+      link: '/search-hotels',
     },
   ];
 }

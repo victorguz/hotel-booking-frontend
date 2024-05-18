@@ -1,8 +1,14 @@
+import { Hotel } from "./hotel.interface";
+
 export interface Room {
-  id: number;
-  hotelId: number;
-  cost: number;
-  taxes: number;
-  type: 'single' | 'double' | 'multiple' | 'shared';
-  description: string;
+  id?: string;
+  hotelId?: string;
+  hotel?: Hotel;
+  name?: string;
+  type?: string;
+  basePrice?: number;
+  tax?: number;
+  location?: string;
+  enabled?: boolean;
+  maxOccupancy?: number;
 }

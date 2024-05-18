@@ -1,0 +1,48 @@
+<article class="d-flex flex-column gap-3 w-100">
+  <section class="top-actions"></section>
+
+  <section class="row g-3">
+    <h1>Reservaciones</h1>
+    @if(reservations.length){
+    <div class="col-6" *ngFor="let item of reservations">
+      <mat-card class="hover h-100" (click)="openReservation(item)">
+        <mat-card-content class="h-100">
+          <div class="row">
+            <div class="col-6">
+              <img
+                src="https://www.kayak.com.co/news/wp-content/uploads/sites/180/2023/08/THEME_HOTEL_SIGN_FIVE_STARS_FACADE_BUILDING_GettyImages-1320779330-3.jpg"
+                alt="hotel"
+                class="hotel-image rounded"
+              />
+            </div>
+            <div class="col-6">
+              <mat-card-title>
+                {{
+                  item.principalGuest?.firstName +
+                    " " +
+                    item.principalGuest?.lastName | titlecase
+                }}
+              </mat-card-title>
+              <p><strong>Hotel:</strong> {{ item.hotel?.name }}</p>
+              <p><strong>habitación:</strong> {{ item.room?.name }}</p>
+              <p>
+                <strong>Personas:</strong>
+                {{ item.guestDetails?.length }}
+              </p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    }@else{
+    <div class="col-12">
+      <mat-card>
+        <mat-card-content class="text-center">
+          <h2>No se han creado reservaciones.</h2>
+          <p>Cuando tengas reservaciones aparecerán aquí.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    }
+  </section>
+</article>
