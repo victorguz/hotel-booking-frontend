@@ -1,7 +1,7 @@
 <article class="d-flex flex-column gap-3 w-100">
   <section class="top-actions"></section>
 
-  <div class="row g-3">
+  <div class="row g-3" *ngIf="hotel">
     <section class="col-lg-6 col-12">
       <h1>Actualizar hotel</h1>
       <app-hotel-form
@@ -15,7 +15,7 @@
             mat-stroked-button
             color="primary"
             (click)="openRoomForm()"
-            [disabled]="!hotel?.id"
+            [disabled]="hotel.id"
           >
             Crear habitación
           </button>
