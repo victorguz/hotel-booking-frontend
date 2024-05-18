@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Reservation } from '../../interfaces/reservation.interface';
 import { ReservationService } from '../../services/reservation.service';
 import { RoomFormComponent } from '../room-form/room-form.component';
+import { ReservationDetailComponent } from '../reservation-detail/reservation-detail.component';
 
 @Component({
   selector: 'app-reservation-list',
@@ -36,7 +37,7 @@ export class ReservationListComponent implements OnInit {
 
   openReservation(reservation: Reservation) {
     this.dialog.dialogComponent({
-      component: RoomFormComponent,
+      component: ReservationDetailComponent,
       data: reservation,
     });
   }

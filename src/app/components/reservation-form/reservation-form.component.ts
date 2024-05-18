@@ -1,7 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../modules/shared/shared.module';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { RoomFormComponent } from '../room-form/room-form.component';
 import { Reservation } from '../../interfaces/reservation.interface';
 import { ReservationService } from '../../services/reservation.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -90,6 +88,7 @@ export class ReservationFormComponent implements OnInit {
     return (
       this.reservation.principalGuest?.firstName &&
       this.reservation.emergencyContact?.name
+      // && this.reservation.status != 'Pendiente'
     );
   }
   async updateStatus() {
@@ -99,9 +98,9 @@ export class ReservationFormComponent implements OnInit {
     });
     this.dialog
       .dialogInformation({
+        title: 'Su reserva ha sido enviada al hotel',
         message:
           'El proceso finalizó. Le será enviado un correo electrónico al confirmar su reserva.',
-        title: 'Su reserva ha sido enviada al hotel',
       })
       .subscribe((ok) => {
         this.router.navigate(['/']);

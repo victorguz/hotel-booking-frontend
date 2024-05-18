@@ -15,5 +15,5 @@ export interface Reservation {
   checkInDate?: Date;
   checkOutDate?: Date;
   totalPrice?: number;
-  status?: string;
+  status?: 'Incompleta' | 'Pendiente' | 'Cancelada' | 'Aceptada';
 }
