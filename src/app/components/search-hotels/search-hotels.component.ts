@@ -27,6 +27,7 @@ export class SearchHotelsComponent implements OnInit {
   });
   hotels: Hotel[] = [];
   rooms: Room[] = [];
+  minDate = new Date();
   constructor(
     private hotelService: HotelService,
     private fb: FormBuilder,
@@ -35,7 +36,9 @@ export class SearchHotelsComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.searchHotels();
+  }
 
   async searchHotels() {
     this.rooms = await this.roomService.getAllByHotelSearchCriteria(

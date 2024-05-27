@@ -78,6 +78,7 @@
       [matDatepicker]="picker"
       [readonly]="true"
       (click)="picker.open()"
+      [min]="minDate"
     />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   </div>

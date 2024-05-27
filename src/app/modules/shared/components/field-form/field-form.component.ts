@@ -19,6 +19,7 @@ export class FieldFormComponent implements OnInit, OnChanges {
    * Formulario que contiene el campo a modificar
    */
   @Input() form!: FormGroup;
+  @Input() minDate?: Date;
   /**
    * Nombre del campo a modificar en el formulario
    */

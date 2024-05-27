@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { database } from './database.service';
 import { Room } from '../interfaces/room.interface';
 import { HotelSearchCriteria } from '../interfaces/hotel.interface';
-
+import removeAccents from 'remove-accents';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,9 +15,11 @@ export class RoomService {
     let reservations = await database.reservations.toArray();
     if (body.city) {
       rooms = rooms.filter((val) => {
-        return val.hotel?.city?.toLowerCase().includes(body.city ?? '');
+        return removeAccents(val.hotel?.city?.toLowerCase()!).includes(removeAccents(body.city?.toLowerCase()!) ?? '');
       });
     }
+    console.log(rooms);
+
     if (body.guests) {
       rooms = rooms.filter((val) => {
         return val.maxOccupancy! >= body.guests!;
