@@ -15,7 +15,7 @@ export class HomeComponent {
       link: '/hotels',
     },
     {
-      title: 'Huesped',
+      title: 'Huésped',
       link: '/search-hotels',
     },
   ];

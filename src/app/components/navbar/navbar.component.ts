@@ -18,7 +18,7 @@ export class NavbarComponent {
       link: '/hotels',
     },
     {
-      title: 'Huesped',
+      title: 'Huésped',
       link: '/search-hotels',
     },
   ];

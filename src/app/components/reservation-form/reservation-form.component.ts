@@ -73,7 +73,7 @@ export class ReservationFormComponent implements OnInit {
 
     await this.reservationService.update(this.id, cloned);
     this.guestForm.reset();
-    this.dialog.showSuccess('Huesped creado exitosamente');
+    this.dialog.showSuccess('Huésped creado exitosamente');
     this.getById();
   }
   async updateEmergencyContact() {
@@ -81,7 +81,7 @@ export class ReservationFormComponent implements OnInit {
     cloned.emergencyContact = this.emergencyContactForm.getRawValue();
     await this.reservationService.update(this.id, cloned);
     this.emergencyContactForm.reset();
-    this.dialog.showSuccess('Huesped creado exitosamente');
+    this.dialog.showSuccess('Huésped creado exitosamente');
     this.getById();
   }
   get canChangeStatus() {
